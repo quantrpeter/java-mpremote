@@ -1,11 +1,23 @@
 import hk.quantr.java.mpremote.JavaMPremote;
 import org.junit.Test;
 
-public class TestFS {
+public class TestFS_LS {
 	@Test
 	public void test() {
-		// Example: adjust port and baud rate as needed for your device
-		String port = "/dev/tty.usbmodem209D367E42472"; // Change to your device
+		// list all files starts with /dev/tty.usbmod and pick the first one to variable "port"
+		String port = null;
+		java.io.File devDir = new java.io.File("/dev");
+		String[] candidates = devDir.list(new java.io.FilenameFilter() {
+			@Override
+			public boolean accept(java.io.File dir, String name) {
+				return name.startsWith("tty.usbmod");
+			}
+		});
+		if (candidates != null && candidates.length > 0) {
+			port = "/dev/" + candidates[0];
+		} else {
+			throw new RuntimeException("No /dev/tty.usbmod* device found");
+		}
 		int baud = 115200;
 		try {
 			boolean connected = JavaMPremote.connect(port, baud);
