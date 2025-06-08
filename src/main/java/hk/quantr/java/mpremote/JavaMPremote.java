@@ -29,6 +29,17 @@ public class JavaMPremote {
 		}
 	}
 
+	public static boolean connect(SerialPort serialPort) {
+		JavaMPremote.serialPort = serialPort;
+		if (serialPort.openPort()) {
+			in = serialPort.getInputStream();
+			out = serialPort.getOutputStream();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public static void disconnect() {
 		try {
 			if (in != null) {
@@ -191,24 +202,25 @@ public class JavaMPremote {
 
 	/**
 	 * Get free and total space on all mount points on the MicroPython device (like 'df').
+	 *
 	 * @return String with columns: mount, size, used, avail, use%
 	 */
 	public static String df() throws Exception {
-		String py =
-			"import os\n" +
-			"mounts = []\n" +
-			"for d in os.listdir('/'):\n" +
-			"    path = '/' + d\n" +
-			"    try:\n" +
-			"        s = os.statvfs(path)\n" +
-			"        total = s[0]*s[2]\n" +
-			"        free = s[0]*s[3]\n" +
-			"        used = total - free\n" +
-			"        percent = 0 if total == 0 else int(used*100/total)\n" +
-			"        mounts.append('%s\t%d\t%d\t%d\t%d' % (d, total, used, free, percent))\n" +
-			"    except:\n" +
-			"        pass\n" +
-			"print('\\n'.join(mounts))";
+		String py
+				= "import os\n"
+				+ "mounts = []\n"
+				+ "for d in os.listdir('/'):\n"
+				+ "    path = '/' + d\n"
+				+ "    try:\n"
+				+ "        s = os.statvfs(path)\n"
+				+ "        total = s[0]*s[2]\n"
+				+ "        free = s[0]*s[3]\n"
+				+ "        used = total - free\n"
+				+ "        percent = 0 if total == 0 else int(used*100/total)\n"
+				+ "        mounts.append('%s\t%d\t%d\t%d\t%d' % (d, total, used, free, percent))\n"
+				+ "    except:\n"
+				+ "        pass\n"
+				+ "print('\\n'.join(mounts))";
 		String header = "mount\tsize\tused\tavail\tuse%";
 		String result = sendCommand(py);
 		return header + "\n" + result.trim();
@@ -216,6 +228,7 @@ public class JavaMPremote {
 
 	/**
 	 * Remove a file from the MicroPython device.
+	 *
 	 * @param path Path to the file to remove (e.g. "/flash/file.txt")
 	 * @throws Exception on error
 	 */
