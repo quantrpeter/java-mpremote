@@ -269,16 +269,8 @@ public class JavaMPremote {
 		while (true) {
 			if (in.available() > 0 && (len = in.read(buffer)) > 0) {
 				String s = new String(buffer, 0, len);
-//				System.out.println("--->"+s);
+				System.out.println("--->"+s);
 				sb.append(s);
-//				if (sb.toString().contains(">")){
-//					System.out.println("");
-//                    // print all bytes in s in hex format
-//                    for (int i = 0; i < sb.length(); i++) {
-//                        System.out.printf("%02X ", (int) sb.charAt(i));
-//                    }
-//                    System.out.println("");
-//				}
 				// if sb contains 0D 0A 04 04 3E 
 				if (sb.toString().contains("\r\n" + (char) 4 + (char) 4 + ">")) {
 					break;
