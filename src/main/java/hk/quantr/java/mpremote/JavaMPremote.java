@@ -13,7 +13,8 @@ public class JavaMPremote {
 	private static SerialPort serialPort;
 	private static InputStream in;
 	private static OutputStream out;
-
+	private static final int COMMAND_TIMEOUT=5000;
+	
 	public static boolean connect(String portDescriptor, int baudRate) {
 		serialPort = SerialPort.getCommPort(portDescriptor);
 		serialPort.setBaudRate(baudRate);
@@ -276,7 +277,7 @@ public class JavaMPremote {
 					break;
 				}
 			}
-			if (System.currentTimeMillis() - start > 2000) {
+			if (System.currentTimeMillis() - start > COMMAND_TIMEOUT) {
 				break; // Timeout
 			}
 		}
@@ -309,7 +310,7 @@ public class JavaMPremote {
 					break;
 				}
 			}
-			if (System.currentTimeMillis() - start > 2000) {
+			if (System.currentTimeMillis() - start > COMMAND_TIMEOUT) {
 				break; // Timeout
 			}
 		}
