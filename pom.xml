@@ -8,9 +8,24 @@
 	<name>Java MPRemote</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>23</maven.compiler.release>
+	<maven.compiler.release>23</maven.compiler.release>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>hk.quantr.java.mpremote.JavaMPremote</exec.mainClass>
     </properties>
+
+	<distributionManagement>
+		<repository>
+			<id>quantr</id>
+			<url>file:///home/maven.quantr.hk/www/repo</url>
+		</repository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>quantr</id>
+			<url>https://maven.quantr.hk/repo</url>
+		</repository>
+	</repositories>
     <dependencies>
         <dependency>
             <groupId>com.fazecast</groupId>
