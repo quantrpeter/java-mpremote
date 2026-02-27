@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>hk.quantr</groupId>
-    <artifactId>java-mpremote</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>hk.quantr</groupId>
+	<artifactId>java-mpremote</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
 	<name>Java MPRemote</name>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<maven.compiler.release>23</maven.compiler.release>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>23</maven.compiler.release>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>hk.quantr.java.mpremote.JavaMPremote</exec.mainClass>
-    </properties>
+		<exec.mainClass>hk.quantr.java.mpremote.JavaMPremote</exec.mainClass>
+	</properties>
 
 	<distributionManagement>
 		<repository>
@@ -26,18 +26,18 @@
 			<url>https://maven.quantr.hk/repo</url>
 		</repository>
 	</repositories>
-    <dependencies>
-        <dependency>
-            <groupId>com.fazecast</groupId>
-            <artifactId>jSerialComm</artifactId>
-            <version>2.10.4</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>com.fazecast</groupId>
+			<artifactId>jSerialComm</artifactId>
+			<version>2.10.4</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
 </project>
